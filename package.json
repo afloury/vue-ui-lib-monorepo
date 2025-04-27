@@ -1,7 +1,7 @@
 {
   "name": "@monorepo/vue-ui-lib-monorepo",
   "version": "1.0.0",
-  "description": "Example of  monorepo for custom Vue UI library",
+  "description": "Example of monorepo for custom Vue UI library",
   "engines": {
     "node": ">=18",
     "pnpm": ">=8"
