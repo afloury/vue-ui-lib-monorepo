@@ -154,7 +154,7 @@ cd apps
 pnpm create vue@latest
 ```
 
-Add UI lib
+Add your UI lib in `apps/web-app/package.json`
 
 ```json
 "dependencies": {
