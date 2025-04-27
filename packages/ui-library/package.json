@@ -1,0 +1,26 @@
+{
+  "name": "@monorepo/ui-library",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "dist/ui-lib.cjs.js",
+  "module": "dist/ui-lib.es.js",
+  "types": "dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "dev": "vite build --watch",
+    "build": "vue-tsc -b && vite build"
+  },
+  "peerDependencies": {
+    "vue": "^3.5.13"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^5.2.2",
+    "@vue/tsconfig": "^0.7.0",
+    "typescript": "~5.7.2",
+    "vite": "^6.3.1",
+    "vite-plugin-dts": "^3.3.1",
+    "vue-tsc": "^2.2.8"
+  }
+}

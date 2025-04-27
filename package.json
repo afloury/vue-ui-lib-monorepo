@@ -1,0 +1,20 @@
+{
+  "name": "@monorepo/vue-ui-lib-monorepo",
+  "version": "1.0.0",
+  "description": "Example of  monorepo for custom Vue UI library",
+  "engines": {
+    "node": ">=18",
+    "pnpm": ">=8"
+  },
+  "scripts": {
+    "dev": "pnpm run -r --parallel --aggregate-output dev",
+    "build": "pnpm run -r --parallel --aggregate-output build"
+  },
+  "keywords": [
+    "Monorepo",
+    "Vue",
+    "UI Library"
+  ],
+  "author": "Antoine Floury",
+  "license": "MIT"
+}
