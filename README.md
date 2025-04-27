@@ -12,9 +12,7 @@ The initial commit includes a minimal working example with a single Vue componen
 
 Follow these steps to create your own monorepo Vue component library and test application.
 
-1. Create the Monorepo
-
-## Steps to create
+### 1. Create the Monorepo
 
 ```bash
 mkdir monorepo
@@ -30,7 +28,7 @@ packages:
 	- 'apps/*'
 ```
 
-2. Create the UI Library Package
+### 2. Create the UI Library Package
 
 ```bash
 mkdir -p packages/ui-library
@@ -40,7 +38,7 @@ rm -rf public src/assets/ .vscode
 rm src/App.vue src/style.css src/components/HelloWorld.vue index.html README.md main.ts
 ```
 
-3. Create a Component
+### 3. Create a Component
 
 ```
 touch src/components/MyComp.vue
@@ -56,7 +54,7 @@ touch src/components/MyComp.vue
 <style scoped></style>
 ```
 
-4. Export the Component
+### 4. Export the Component
 
 ```
 touch src/index.ts
