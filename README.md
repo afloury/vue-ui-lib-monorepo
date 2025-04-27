@@ -1,5 +1,15 @@
 # Vue Component library Monorepo example
 
+## Description
+
+I created this repository as a practical example of how to build and structure a custom Vue component library inside a monorepo, using pnpm workspaces. At my workplace, I needed to develop a UI library in Vue 3, with most components based on Vuetify and custom styles to match our company’s design system. However, I found that up-to-date, working examples for this setup—especially with monorepos and peer dependencies—were hard to find on StackOverflow, Reddit, and elsewhere.
+
+After spending a few days building a proof of concept for my company, I decided to share a simplified version here. This project provides a step-by-step guide to help others quickly set up a similar monorepo structure, export Vue components, and configure peer dependencies (like Vuetify) to avoid duplication and conflicts in consumer apps.
+
+The initial commit includes a minimal working example with a single Vue component. I plan to add further commits showing how to configure Vuetify as a peer dependency and other best practices.
+
+## How to reproduce
+
 ## Steps to create
 
 ```bash
