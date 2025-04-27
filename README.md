@@ -10,6 +10,10 @@ The initial commit includes a minimal working example with a single Vue componen
 
 ## How to reproduce
 
+Follow these steps to create your own monorepo Vue component library and test application.
+
+1. Create the Monorepo
+
 ## Steps to create
 
 ```bash
@@ -26,7 +30,7 @@ packages:
 	- 'apps/*'
 ```
 
-Create the UI library package
+2. Create the UI Library Package
 
 ```bash
 mkdir -p packages/ui-library
@@ -36,13 +40,13 @@ rm -rf public src/assets/ .vscode
 rm src/App.vue src/style.css src/components/HelloWorld.vue index.html README.md main.ts
 ```
 
-Create composant
+3. Create a Component
 
 ```
 touch src/components/MyComp.vue
 ```
 
-`MyComp.vue`
+`src/components/MyComp.vue`:
 
 ```vue
 <template>
@@ -52,19 +56,21 @@ touch src/components/MyComp.vue
 <style scoped></style>
 ```
 
-Export component
+4. Export the Component
 
 ```
 touch src/index.ts
 ```
 
-`index.ts`
+`src/index.ts`:
 
 ```ts
 export { default as MyComp } from "./components/MyComp.vue"
 ```
 
-Update `packages/ui-library/package.json`
+5. Update package.json for the UI Library
+
+`packages/ui-library/package.json`:
 
 ```json
 {
@@ -93,7 +99,9 @@ Update `packages/ui-library/package.json`
 }
 ```
 
-Update `vite.config.ts`
+6. Update Vite Config
+
+`packages/ui-library/vite.config.ts`:
 
 ```ts
 // https://vite.dev/config/
@@ -130,7 +138,9 @@ export default defineConfig({
 })
 ```
 
-Update root `package.json`
+7. Update Root package.json
+
+`package.json` at the monorepo root:
 
 ```json
 {
@@ -149,14 +159,14 @@ Update root `package.json`
 }
 ```
 
-Install package at monorepo root:
+8. Install Packages at Monorepo Root
 
 ```bash
 cd ../..
 pnpm install
 ```
 
-Create a test application
+9. Create a Test Application
 
 ```bash
 mkdir -p apps
@@ -164,7 +174,7 @@ cd apps
 pnpm create vue@latest
 ```
 
-Add your UI lib in `apps/web-app/package.json`
+Add your UI library in `apps/web-app/package.json`:
 
 ```json
 "dependencies": {
@@ -180,7 +190,9 @@ pnpm install
 pnpm dev
 ```
 
-Import the component in a view `HomeView.vue`
+10. Import the Component in a View
+
+In `HomeView.vue`:
 
 ```vue
 <script setup lang="ts">
@@ -195,3 +207,9 @@ import { MyComp } from "@monorepo/ui-library"
   </main>
 </template>
 ```
+
+### Notes
+
+- This example uses pnpm workspaces for efficient monorepo management.
+- The UI library is set up to use Vue 3 as a peer dependency, which helps avoid version conflicts in consumer applications.
+- Further commits will demonstrate how to add Vuetify as a peer dependency and share more advanced configuration tips.
