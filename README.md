@@ -1,12 +1,23 @@
-# Vue Component library Monorepo example
+# Vue & Vuetify Component Library Monorepo Example
 
 ## Description
 
-I created this repository as a practical example of how to build and structure a custom Vue component library inside a monorepo, using pnpm workspaces. At my workplace, I needed to develop a UI library in Vue 3, with most components based on Vuetify and custom styles to match our company’s design system. However, I found that up-to-date, working examples for this setup—especially with monorepos and peer dependencies—were hard to find on StackOverflow, Reddit, and elsewhere.
+This repository demonstrates how to build and structure a custom Vue component library with Vuetify integration inside a monorepo, using pnpm workspaces. I created this project because finding up-to-date, working examples for this setup—especially handling Vuetify as a peer dependency in a monorepo structure—proved challenging across platforms like StackOverflow and Reddit.
 
-After spending a few days building a proof of concept for my company, I decided to share a simplified version here. This project provides a step-by-step guide to help others quickly set up a similar monorepo structure, export Vue components, and configure peer dependencies (like Vuetify) to avoid duplication and conflicts in consumer apps.
+After spending time building a proof of concept for my company, I'm sharing this simplified but practical example. The repository showcases:
 
-The initial commit includes a minimal working example with a single Vue component. I plan to add further commits showing how to configure Vuetify as a peer dependency and other best practices.
+- A working monorepo structure for a Vue 3 component library
+- Proper Vuetify integration as a peer dependency in the UI library
+- Configuration of `vite-plugin-vuetify` for correct component building
+- A demo web application consuming the library components
+- Working example of a custom component using Vuetify's button component
+- Complete setup to avoid dependency duplication and conflicts in consumer apps
+
+This setup ensures that both the library and consuming applications share the same Vuetify instance, preventing potential conflicts and maintaining consistent behavior.
+
+Looking for a simpler version without Vuetify? Check out the [simple-vue-ui-lib tag](https://github.com/afloury/vue-ui-lib-monorepo/releases/tag/simple-vue-ui-lib), which contains a minimal working example with just Vue components.
+
+The repository serves as a step-by-step guide for developers looking to create their own component libraries, especially those building on top of Vuetify while maintaining a clean monorepo structure.
 
 ## How to reproduce
 
