@@ -66,7 +66,7 @@ touch src/index.ts
 export { default as MyComp } from "./components/MyComp.vue"
 ```
 
-5. Update package.json for the UI Library
+### 5. Update package.json for the UI Library
 
 `packages/ui-library/package.json`:
 
@@ -97,7 +97,7 @@ export { default as MyComp } from "./components/MyComp.vue"
 }
 ```
 
-6. Update Vite Config
+### 6. Update Vite Config
 
 `packages/ui-library/vite.config.ts`:
 
@@ -136,7 +136,7 @@ export default defineConfig({
 })
 ```
 
-7. Update Root package.json
+### 7. Update Root package.json
 
 `package.json` at the monorepo root:
 
@@ -157,14 +157,14 @@ export default defineConfig({
 }
 ```
 
-8. Install Packages at Monorepo Root
+### 8. Install Packages at Monorepo Root
 
 ```bash
 cd ../..
 pnpm install
 ```
 
-9. Create a Test Application
+### 9. Create a Test Application
 
 ```bash
 mkdir -p apps
@@ -188,7 +188,7 @@ pnpm install
 pnpm dev
 ```
 
-10. Import the Component in a View
+### 10. Import the Component in a View
 
 In `HomeView.vue`:
 
@@ -211,3 +211,121 @@ import { MyComp } from "@monorepo/ui-library"
 - This example uses pnpm workspaces for efficient monorepo management.
 - The UI library is set up to use Vue 3 as a peer dependency, which helps avoid version conflicts in consumer applications.
 - Further commits will demonstrate how to add Vuetify as a peer dependency and share more advanced configuration tips.
+
+## Add Vuetify
+
+### 1. Install Vuetify inside the Web App
+
+```bash
+pnpm i vuetify
+```
+
+### 2. Update main.ts
+
+```typescript
+import { createApp } from "vue"
+
+// Vuetify
+import "vuetify/styles"
+import { createVuetify } from "vuetify"
+import * as components from "vuetify/components"
+import * as directives from "vuetify/directives"
+
+// Components
+import App from "./App.vue"
+
+const vuetify = createVuetify({
+  components,
+  directives,
+})
+
+createApp(App).use(vuetify).mount("#app")
+```
+
+### 3. Install vite-plugin-vuetify inside the UI Library to build vuetify components
+
+```bash
+cd packages/ui-library
+pnpm i -D vite-plugin-vuetify
+```
+
+### 4. Update vite.config.ts inside the UI Library
+
+`packages/ui-library/vite.config.ts`:
+
+```ts
+// https://vite.dev/config/
+import { defineConfig } from "vite"
+import vue from "@vitejs/plugin-vue"
+import vuetify from "vite-plugin-vuetify"
+
+// https://vite.dev/config/
+export default defineConfig({
+  plugins: [
+    vue(),
+    vuetify({ autoImport: true }), // Enabled by default
+    dts({
+      tsconfigPath: "tsconfig.app.json", // Point to your package's tsconfig
+    }),
+  ],
+  build: {
+    lib: {
+      entry: "src/index.ts",
+      name: "UiLib",
+      fileName: (format) => `ui-lib.${format}.js`,
+      formats: ["es", "cjs"],
+    },
+    rollupOptions: {
+      external: ["vue", "vuetify"],
+      output: {
+        globals: {
+          vue: "Vue",
+          vuetify: "Vuetify",
+        },
+      },
+    },
+  },
+  resolve: {
+    dedupe: ["vue", "vuetify"], // Ensure single instance
+  },
+})
+```
+
+### 5. You can now create a custom component that uses Vuetify
+
+```vue
+<template>
+  <div>
+    <v-row noGutters>Vuetify custom component from UI library</v-row>
+    <v-btn
+      class="mt-4 text-none font-weight-bold"
+      color="red"
+      variant="outlined"
+      rounded="lg"
+      >Btn from library</v-btn
+    >
+  </div>
+</template>
+```
+
+### 6. then export it in you index.ts
+
+```ts
+export { default as MyCustomBtn } from "./components/MyCustomBtn.vue"
+```
+
+### 7. So you can use it in you Web App
+
+```vue
+<script setup lang="ts">
+import { MyComp, MyCustomBtn } from "@monorepo/ui-library"
+</script>
+
+<template>
+  <div>
+    <MyComp class="ma-4" />
+    <v-btn class="ma-4" color="primary">btn from app</v-btn>
+    <MyCustomBtn class="ma-4" />
+  </div>
+</template>
+```

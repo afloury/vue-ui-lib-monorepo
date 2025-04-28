@@ -1,11 +1,13 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
+import { defineConfig } from "vite"
+import vue from "@vitejs/plugin-vue"
 import dts from "vite-plugin-dts"
+import vuetify from "vite-plugin-vuetify"
 
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [
-    vue(), 
+    vue(),
+    vuetify({ autoImport: true }), // Enabled by default
     dts({
       tsconfigPath: "tsconfig.app.json", // Point to your package's tsconfig
     }),
@@ -14,19 +16,20 @@ export default defineConfig({
     lib: {
       entry: "src/index.ts",
       name: "UiLib",
-      fileName: format => `ui-lib.${format}.js`,
+      fileName: (format) => `ui-lib.${format}.js`,
       formats: ["es", "cjs"],
     },
     rollupOptions: {
-      external: ["vue"],
+      external: ["vue", "vuetify"],
       output: {
         globals: {
           vue: "Vue",
+          vuetify: "Vuetify",
         },
       },
     },
   },
   resolve: {
-    dedupe: ["vue"], // Ensure single instance
+    dedupe: ["vue", "vuetify"], // Ensure single instance
   },
 })
