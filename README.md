@@ -2,7 +2,7 @@
 
 ## Description
 
-This repository demonstrates how to build and structure a custom Vue component library with Vuetify integration inside a monorepo, using pnpm workspaces. I created this project because finding up-to-date, working examples for this setup—especially handling Vuetify as a peer dependency in a monorepo structure—proved challenging across platforms like StackOverflow and Reddit.
+This repository demonstrates how to build and structure a custom Vue component library with Vuetify integration inside a monorepo, using pnpm workspaces. I created this project because it was difficult to find up-to-date, working examples for this setup, especially handling Vuetify as a peer dependency in a monorepo structure, even across platforms like StackOverflow, GitHub and Reddit.
 
 After spending time building a proof of concept for my company, I'm sharing this simplified but practical example. The repository showcases:
 
