@@ -20,7 +20,7 @@ export default defineConfig({
       formats: ["es", "cjs"],
     },
     rollupOptions: {
-      external: ["vue", "vuetify"],
+      external: ["vue", /^vuetify(\/.*)?$/],
       output: {
         globals: {
           vue: "Vue",
